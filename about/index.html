@@ -19,7 +19,71 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nima Rezaeian"},"description":"Independent research notes, technical explanations, and longer-form writing.","headline":"About","name":"Nima Rezaeian","url":"https://nimarez.github.io/about/"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://nimarez.github.io/feed.xml" title="Nima Rezaeian" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://nimarez.github.io/feed.xml" title="Nima Rezaeian" /><script>
+  (function () {
+    var choices = ["white", "minima", "paper", "bone", "linen", "porcelain", "mist", "chalk"];
+    var saved = window.localStorage && window.localStorage.getItem("background-choice");
+    var selected = choices.indexOf(saved) === -1 ? "white" : saved;
+    document.documentElement.setAttribute("data-bg", selected);
+  })();
+
+  MathJax = {
+    tex: {
+      inlineMath: [["\\(", "\\)"]],
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+    }
+  };
+</script>
+<script
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    var colors = [
+      ["white", "White", "#ffffff"],
+      ["minima", "Minima white", "#fdfdfd"],
+      ["paper", "Warm paper", "#fffdf7"],
+      ["bone", "Bone", "#faf9f6"],
+      ["linen", "Linen", "#fbf7ef"],
+      ["porcelain", "Porcelain", "#f8fbff"],
+      ["mist", "Mist", "#f7f8f5"],
+      ["chalk", "Chalk", "#fbfbf8"]
+    ];
+
+    var picker = document.createElement("div");
+    picker.className = "background-picker";
+    picker.setAttribute("aria-label", "Background color");
+
+    function setChoice(choice) {
+      document.documentElement.setAttribute("data-bg", choice);
+      if (window.localStorage) {
+        window.localStorage.setItem("background-choice", choice);
+      }
+      picker.querySelectorAll("button").forEach(function (button) {
+        button.setAttribute("aria-pressed", button.dataset.bg === choice ? "true" : "false");
+      });
+    }
+
+    colors.forEach(function (color) {
+      var button = document.createElement("button");
+      button.className = "background-picker__swatch";
+      button.type = "button";
+      button.dataset.bg = color[0];
+      button.title = color[1] + " " + color[2];
+      button.setAttribute("aria-label", color[1] + " background");
+      button.style.setProperty("--swatch", color[2]);
+      button.addEventListener("click", function () {
+        setChoice(color[0]);
+      });
+      picker.appendChild(button);
+    });
+
+    document.body.appendChild(picker);
+    setChoice(document.documentElement.getAttribute("data-bg") || "white");
+  });
+</script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Nima Rezaeian</a><nav class="site-nav">
