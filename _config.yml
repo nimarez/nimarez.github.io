@@ -1,3 +1,32 @@
-theme: jekyll-theme-minimal
-title: Nima's Homepage
-description: NimLog
+title: Nima Rezaeian
+author: Nima Rezaeian
+description: >
+  Independent research notes, technical explanations, and longer-form writing.
+
+url: "https://nimarez.github.io"
+baseurl: ""
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+header_pages:
+  - about.md
+
+show_excerpts: true
+permalink: /:year/:month/:day/:title/
+
+minima:
+  skin: classic
+
+github_username: nimarez
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - vendor/
+  - README.md
